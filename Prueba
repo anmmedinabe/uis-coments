@@ -1,0 +1,26 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+from IPython.core.display import display, HTML
+import pyodbc
+import pandas.io.sql as psql
+%matplotlib inline
+%run -i ../BD_utils.py
+display(HTML("<style>.container { width:95% !important; }</style>"))
+
+
+base_col   = "sInsumo_sActividad"
+target_col = "strNombreProveedor"
+metric = "rPrecio"
+
+metric_cols = [
+                {"colname":        "rPrecio",
+                 "compute_diffs":  False,
+                 "normalize_with": None,
+                 "divbyzero_result": 0} 
+              ]
+additional_cols = ["Categoria","century","Modelo"]
+
+mincount_base   = 50
+mincount_target = 10
