@@ -9,6 +9,12 @@ import pandas.io.sql as psql
 %run -i ../BD_utils.py
 display(HTML("<style>.container { width:95% !important; }</style>"))
 
+lista=["FechaIngresoServicio","Placa",'sInsumo_sActividad','strNombreProveedor','rPrecio','Categoria','century','Modelo']
+anio = "2016"
+
+    df=pd.read_hdf(tem+".hd5")
+    
+df.head()
 
 base_col   = "sInsumo_sActividad"
 target_col = "strNombreProveedor"
@@ -24,3 +30,19 @@ additional_cols = ["Categoria","century","Modelo"]
 
 mincount_base   = 50
 mincount_target = 10
+
+#print df.shape
+len(df)
+
+df=df[0:10000]
+df.shape
+
+Placas=np.unique(df.Placa)
+lista_mantenimientos=[]
+for i in Placas:
+    df_Placa= df[df.Placa==i]
+    lista_mantenimientos.append(df_Placa)
+    
+len(lista_mantenimientos)
+lista_mantenimientos[0]
+#Placas
